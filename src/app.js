@@ -1,11 +1,14 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
+const AppError = require('./utils/AppError')
+
+const usersRouter = require("./users/users.routes")
 
 app.use(express.json());
 app.use(cors());
-//app.use("/files", express.static(uploadConfig.UPLOADS_FOLDER));
-app.use(routes);
+
+app.use("/users", usersRouter);
 
 app.use((error, request, response, next) => {
   if (error instanceof AppError) {
