@@ -6,11 +6,15 @@
   "author": "Felipe Boba <felipe.borba0109@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon src/index.js"
+    "dev": "nodemon src/index.js",
+    "migrate": "knex migrate:latest --knexfile database/knex/knexfile.js"
   },
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "jest": "^29.2.0",
+    "knex": "^2.3.0",
+    "sqlite3": "^5.1.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"
