@@ -6,9 +6,10 @@ const usersController = require("./users.controller");
 
 usersRoutes.post(
   "/",
-  check("name").notEmpty(),
-  check("password").notEmpty(),
-  check("email").notEmpty().normalizeEmail(),
+  check("name").notEmpty().withMessage('is required').trim(),
+  check("role").isIn(['admin', 'customer']).withMessage('should be: admin or customer'),
+  check("password").notEmpty().withMessage('is required'),
+  check("email").notEmpty().withMessage('is required').isEmail().withMessage('invalid email').normalizeEmail(),
   usersController.create
 );
 
