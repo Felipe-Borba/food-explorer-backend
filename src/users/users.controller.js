@@ -12,6 +12,18 @@ async function create(request, response, next) {
   }
 }
 
+async function logIn(request, response, next) {
+  try {
+    utils.checkRequestError(request);
+
+    const user = request.body;
+    return response.status(200).send(await usersService.logIn(user));
+  } catch (error) {
+    next(error);
+  }
+}
+
 module.exports = {
   create,
+  logIn
 };
