@@ -1,3 +1,4 @@
+require("dotenv/config");
 const app = require("./app");
 const knex = require("./database/knex/index");
 const path = require("path");

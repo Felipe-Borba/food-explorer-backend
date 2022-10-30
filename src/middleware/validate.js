@@ -1,11 +1,11 @@
-const AppError = require("./AppError");
+const AppError = require("../utils/AppError");
 const { validationResult } = require("express-validator");
 
 const errorFormatter = ({ location, msg, param, value, nestedErrors }) => {
   return `${param} ${msg}`;
 };
 
-function checkRequestError(request) {
+function validate(request, response, next) {
   const validateError = validationResult(request);
   if (!validateError.isEmpty()) {
     throw new AppError({
@@ -14,6 +14,8 @@ function checkRequestError(request) {
       messageCode: 4000,
     });
   }
+
+  next();
 }
 
-module.exports = { checkRequestError };
+module.exports = validate;

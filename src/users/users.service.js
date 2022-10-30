@@ -2,6 +2,8 @@ const knex = require("../database/knex");
 const AppError = require("../utils/AppError");
 const { sign } = require("jsonwebtoken");
 const authConfig = require("../configs/auth");
+const { hash, compare } = require("bcryptjs");
+const DiskStorage = require("../providers/DiskStorage");
 
 async function create(params) {
   const { name, email, password } = params;
@@ -27,8 +29,8 @@ async function create(params) {
   return { id };
 }
 
-async function logIn(user) {
-  const { name, password } = user;
+async function logIn(data) {
+  const { name, password } = data;
 
   const user = await knex("users").where({ name }).first();
 
@@ -54,7 +56,7 @@ async function logIn(user) {
     expiresIn,
   });
 
-  return response.json({ user, token });
+  return { user, token };
 }
 
 async function updateInfo(params) {
@@ -63,6 +65,24 @@ async function updateInfo(params) {
 
 async function updateAvatar(params) {
   const { userId, filename } = params;
+
+  const user = await knex("users").where({ id: userId }).first();
+
+  if (!user) {
+    throw new AppError("usuário nao encontrado", 500);
+  }
+
+  const diskStorage = new DiskStorage();
+  if (user.avatar) {
+    diskStorage.deleteFile(user.avatar);
+  }
+
+  const savedFilename = await diskStorage.saveFile(filename);
+  user.avatar = savedFilename;
+
+  await knex("users").update(user).where({ id: userId });
+
+  return user;
 }
 
 module.exports = {
