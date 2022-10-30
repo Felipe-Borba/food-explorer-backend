@@ -21,20 +21,7 @@ async function logIn(request, response, next) {
   }
 }
 
-async function updateAvatar(request, response, next) {
-  try {
-    const userId = request.user.id;
-    const avatarFilename = request.file.filename;
-
-    const body = request.body;
-    return response.status(200).send(await usersService.updateAvatar(body));
-  } catch (error) {
-    next(error);
-  }
-}
-
 module.exports = {
   create,
   logIn,
-  updateAvatar,
 };
