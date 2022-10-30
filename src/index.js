@@ -1,11 +1,8 @@
 require("dotenv/config");
 const app = require("./app");
-const knex = require("./database/knex/index");
-const path = require("path");
+const migration = require('./database/knex/migration');
 
-knex.migrate.latest({
-  directory: [path.resolve(__dirname, "users", "migrations"),]
-});
+migration.latest();
 
 const PORT = process.env.PORT;
 app.listen(PORT, () => console.log(`Server running on port: ${PORT}`));
