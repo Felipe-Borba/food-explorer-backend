@@ -1,7 +1,7 @@
-const knex = require("../database/knex");
-const AppError = require("../utils/AppError");
+const knex = require("../../database/knex");
+const AppError = require("../../utils/AppError");
 const { sign } = require("jsonwebtoken");
-const authConfig = require("../configs/auth");
+const authConfig = require("../../configs/auth");
 const { hash, compare } = require("bcryptjs");
 
 async function create(params) {

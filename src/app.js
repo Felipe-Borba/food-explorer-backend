@@ -5,7 +5,7 @@ const AppError = require("./utils/AppError");
 const uploadConfig = require("./configs/upload");
 const cookieParser = require("cookie-parser");
 
-const usersRouter = require("./users/users.routes");
+const usersRouter = require("./models/users/users.routes");
 
 app.use(express.json());
 app.use(cors());

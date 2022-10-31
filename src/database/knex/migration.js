@@ -4,8 +4,8 @@ const path = require("path");
 function latest() {
   knex.migrate.latest({
     directory: [
-      path.resolve(__dirname, "users", "migrations"),
-      path.resolve(__dirname, "dish", "migrations"),
+      path.resolve(__dirname, "..", "..", "models", "users", "migrations"),
+      path.resolve(__dirname, "..", "..", "models", "dish", "migrations"),
     ],
   });
 }
