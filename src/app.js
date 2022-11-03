@@ -6,11 +6,13 @@ const uploadConfig = require("./configs/upload");
 const cookieParser = require("cookie-parser");
 
 const usersRouter = require("./models/users/users.routes");
+const dishRouter = require("./models/dish/dish.routes");
 
 app.use(express.json());
 app.use(cors());
 app.use(cookieParser());
 
+app.use("/dish", dishRouter);
 app.use("/users", usersRouter);
 app.use("/files", express.static(uploadConfig.UPLOADS_FOLDER));
 
