@@ -21,8 +21,8 @@ usersRoutes.post(
 
 usersRoutes.post(
   "/session",
-  check("name").notEmpty().withMessage("é obrigatório").trim(),
-  check("password").notEmpty().withMessage("é obrigatório"),
+  check("email").notEmpty().withMessage("é obrigatório").trim(),
+  check("senha").notEmpty().withMessage("é obrigatório"),
   validate,
   usersController.logIn
 );

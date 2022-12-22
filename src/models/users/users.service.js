@@ -29,9 +29,9 @@ async function create(params) {
 }
 
 async function logIn(data) {
-  const { name, password } = data;
+  const { email, senha: password } = data;
 
-  const user = await knex("users").where({ name }).first();
+  const user = await knex("users").where({ email }).first();
 
   const error = new AppError({
     message: "usuário e/ou senha incorreta",
