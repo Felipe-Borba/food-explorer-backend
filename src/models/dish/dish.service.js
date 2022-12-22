@@ -1,4 +1,4 @@
-const knex = require("../database/knex");
+const knex = require("../../database/knex");
 const ingredientService = require("../ingredient/ingredient.service");
 
 async function create(params) {
@@ -35,7 +35,7 @@ async function updateById(params) {
   return {};
 }
 
-async function deleteById(id) {
+async function deleteById(params) {
   const { id } = params;
 
   await knex("dishes").where({ id }).delete();
@@ -43,7 +43,6 @@ async function deleteById(id) {
   return {};
 }
 
-//TODO add pagination
 async function list(params) {
   const dishes = await knex('dishes')
 

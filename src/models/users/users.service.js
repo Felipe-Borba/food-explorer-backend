@@ -5,7 +5,7 @@ const authConfig = require("../../configs/auth");
 const { hash, compare } = require("bcryptjs");
 
 async function create(params) {
-  const { name, email, password, role } = params;
+  const { nome: name, email, senha: password } = params;
 
   const user = await knex("users").where({ name }).first();
   if (user) {
@@ -19,7 +19,7 @@ async function create(params) {
   const hashedPassword = await hash(password, 8);
 
   const [id] = await knex("users").insert({
-    role,
+    role: "customer",
     name,
     email,
     password: hashedPassword,

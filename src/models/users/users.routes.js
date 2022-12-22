@@ -7,19 +7,22 @@ const usersController = require("./users.controller");
 
 usersRoutes.post(
   "/",
-  check("name").notEmpty().withMessage("is required").trim(),
-  check("role")
-    .isIn(["admin", "customer"])
-    .withMessage("should be: admin or customer"),
-  check("password").notEmpty().withMessage("is required"),
+  check("nome").notEmpty().withMessage("é obrigatório").trim(),
+  check("email")
+    .notEmpty()
+    .withMessage("é obrigatório")
+    .isEmail()
+    .withMessage("inválido")
+    .trim(),
+  check("senha").notEmpty().withMessage("é obrigatório"),
   validate,
   usersController.create
 );
 
 usersRoutes.post(
   "/session",
-  check("name").notEmpty().withMessage("is required").trim(),
-  check("password").notEmpty().withMessage("is required"),
+  check("name").notEmpty().withMessage("é obrigatório").trim(),
+  check("password").notEmpty().withMessage("é obrigatório"),
   validate,
   usersController.logIn
 );
