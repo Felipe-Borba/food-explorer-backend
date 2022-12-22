@@ -7,10 +7,10 @@ const { hash, compare } = require("bcryptjs");
 async function create(params) {
   const { nome: name, email, senha: password } = params;
 
-  const user = await knex("users").where({ name }).first();
+  const user = await knex("users").where({ email }).first();
   if (user) {
     throw new AppError({
-      message: "Usuário já cadastrado",
+      message: "Email já cadastrado",
       messageCode: 4003,
       statusCode: 403,
     });
