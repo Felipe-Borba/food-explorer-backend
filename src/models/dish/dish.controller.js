@@ -1,6 +1,6 @@
 const dishService = require("./dish.service");
 
-async function create(params) {
+async function create(request, response, next) {
   try {
     const { body } = request;
 
@@ -10,7 +10,7 @@ async function create(params) {
   }
 }
 
-async function loadById(params) {
+async function loadById(request, response, next) {
   try {
     const { id } = request.params;
 
@@ -20,27 +20,7 @@ async function loadById(params) {
   }
 }
 
-async function updateById(params) {
-  try {
-    const { body } = request;
-
-    return response.status(201).send(await dishService.updateById(body));
-  } catch (error) {
-    next(error);
-  }
-}
-
-async function deleteById(params) {
-  try {
-    const { id } = request.params;
-
-    return response.status(201).send(await dishService.deleteById({ id }));
-  } catch (error) {
-    next(error);
-  }
-}
-
-async function list(params) {
+async function list(request, response, next) {
   try {
     const { body } = request;
 
@@ -53,7 +33,5 @@ async function list(params) {
 module.exports = {
   create,
   loadById,
-  updateById,
-  deleteById,
   list,
 };

@@ -8,6 +8,7 @@ exports.up = function (knex) {
     table.text("name");
     table.text("image");
     table.text("description");
+    table.text("type");
     table.decimal("price");
     table.timestamp("created_at").defaultTo(knex.fn.now());
     table.timestamp("updated_at").defaultTo(knex.fn.now());

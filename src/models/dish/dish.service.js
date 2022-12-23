@@ -2,13 +2,21 @@ const knex = require("../../database/knex");
 const ingredientService = require("../ingredient/ingredient.service");
 
 async function create(params) {
-  const { name, image, description, price, ingredients } = params;
+  const {
+    nome: name,
+    imagem: image,
+    descricao: description,
+    preco: price,
+    ingredientes: ingredients,
+    tipo: type,
+  } = params;
 
   const dish_id = await knex("dishes").insert({
     name,
     image,
     description,
     price,
+    type,
   });
   await ingredientService.createMany({ ingredients, dish_id });
 
@@ -24,37 +32,18 @@ async function loadById(params) {
   return { dish, ingredients };
 }
 
-async function updateById(params) {
-  const { id, name, image, description, price, ingredients } = params;
-
-  await knex("dishes")
-    .update({ name, image, description, price })
-    .where({ id });
-  await ingredientService.updateByDishId({ dishId: id, ingredients });
-
-  return {};
-}
-
-async function deleteById(params) {
-  const { id } = params;
-
-  await knex("dishes").where({ id }).delete();
-
-  return {};
-}
-
 async function list(params) {
-  const dishes = await knex('dishes')
+  // const { type } = params;
+
+  const dishes = await knex("dishes");
 
   return {
-    dishes
-  }
+    dishes,
+  };
 }
 
 module.exports = {
   list,
   create,
   loadById,
-  updateById,
-  deleteById,
 };
