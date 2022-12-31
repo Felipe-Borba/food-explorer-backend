@@ -26,7 +26,11 @@ function ensureAuthenticated(request, response, next) {
 
     return next();
   } catch (error) {
-    throw new AppError("jwt token invalido", 401);
+    throw new AppError({
+      message: "jwt token invalido",
+      statusCode: 401,
+      messageCode: 4004,
+    });
   }
 }
 

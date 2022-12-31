@@ -1,3 +1,5 @@
+const knex = require("../../database/knex");
+
 async function createMany(params) {
   const { ingredients, dish_id } = params;
 

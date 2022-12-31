@@ -6,6 +6,7 @@ function latest() {
     directory: [
       path.resolve(__dirname, "..", "..", "models", "users", "migrations"),
       path.resolve(__dirname, "..", "..", "models", "dish", "migrations"),
+      path.resolve(__dirname, "..", "..", "models", "ingredient", "migrations"),
     ],
   });
 }

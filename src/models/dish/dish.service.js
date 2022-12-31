@@ -1,5 +1,7 @@
 const knex = require("../../database/knex");
 const ingredientService = require("../ingredient/ingredient.service");
+const AppError = require("../../utils/AppError");
+const DiskStorage = require("../../providers/DiskStorage");
 
 async function create(params) {
   const {
@@ -20,7 +22,33 @@ async function create(params) {
   });
   await ingredientService.createMany({ ingredients, dish_id });
 
-  return { created: true };
+  return { created: true, id: dish_id[0] };
+}
+
+async function updateDishImage(params) {
+  const { id, image } = params;
+
+  const dish = await knex("dishes").where({ id }).first();
+
+  if (!dish) {
+    throw new AppError({
+      message: "Prato nao encontrado",
+      messageCode: 5001,
+      statusCode: 500,
+    });
+  }
+
+  const diskStorage = new DiskStorage();
+  if (dish.image) {
+    diskStorage.deleteFile(dish.image);
+  }
+
+  const filename = await diskStorage.saveFile(image);
+  dish.image = filename;
+
+  await knex("dishes").update(dish).where({ id });
+
+  return dish;
 }
 
 async function loadById(params) {
@@ -43,7 +71,8 @@ async function list(params) {
 }
 
 module.exports = {
-  list,
-  create,
+  updateDishImage,
   loadById,
+  create,
+  list,
 };

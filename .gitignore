@@ -108,3 +108,7 @@ dist
 *.db
 
 .vscode/
+
+# to exclude any photo that may be included during debug
+/tmp/*
+/uploads/*
