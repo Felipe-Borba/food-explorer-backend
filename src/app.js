@@ -17,7 +17,7 @@ app.use("/dish", ensureAuthenticated, dishRouter);
 app.use("/users", usersRouter);
 app.use(
   "/files",
-  ensureAuthenticated,
+  // ensureAuthenticated,
   express.static(uploadConfig.UPLOADS_FOLDER)
 );
 
