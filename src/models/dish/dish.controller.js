@@ -46,9 +46,9 @@ async function loadById(request, response, next) {
 
 async function list(request, response, next) {
   try {
-    const { body } = request;
+    const { type } = request.query;
 
-    return response.status(201).send(await dishService.list());
+    return response.status(201).send(await dishService.list({type}));
   } catch (error) {
     next(error);
   }
