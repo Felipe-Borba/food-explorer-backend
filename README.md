@@ -1,8 +1,8 @@
 # **Food Explorer Backend**
 
-Desafio final proposto pelo curso da Rocketseat feito por mim, disponível [aqui](https://).
+Desafio final proposto pelo curso da Rocketseat feito por mim, disponível [aqui](https://app.rocketseat.com.br/explorer/final-challenge).
 
-[Repositório do frontend](https://)
+[Repositório do frontend](https://github.com/Felipe-Borba/food-explorer-backend)
 
 ---
 
@@ -30,15 +30,15 @@ Desafio final proposto pelo curso da Rocketseat feito por mim, disponível [aqui
 
 ## Obrigatórios
 
-- [ ] Atende a todas as especificações descritas
+- [x] Atende a todas as especificações descritas
 
 - [x] Um projeto estruturado, com uma boa organização das pastas, divisão de componentes no front-end, etc.
 
-- [ ] Um arquivo README.md com as especificações sobre como executar o projeto em um ambiente dev.
+- [x] Um arquivo README.md com as especificações sobre como executar o projeto em um ambiente dev.
 
 - [x] Os usuários deverão se autenticar para entrar na aplicação através da tela de login, você pode aplicar o que aprendeu nas aulas de autenticação JWT. A autenticação deve ser validada com senha.
 
-- [ ] O admin irá fazer upload de imagens para cadastrar os pratos.
+- [x] O admin irá fazer upload de imagens para cadastrar os pratos.
 
 - [ ] Para finalizar, faça o deploy da sua aplicação.
 
@@ -46,15 +46,15 @@ Desafio final proposto pelo curso da Rocketseat feito por mim, disponível [aqui
 
 - [x] Os dados do admin, do restaurante e dos usuários serão armazenados em um banco de dados.
 
-- [ ] Possibilidade de fazer uma busca pelo nome do prato, pelos ingredientes ou por prato favorito
+- [ ] Possibilidade de fazer uma busca pelo nome do prato
 
 - [x] É essencial que a sua interface consuma a sua própria API.
 
-- [ ] Interessante deixar a aplicação responsiva: utilize o conceito de Mobile First que foi aprendido em aula.
+- [x] Interessante deixar a aplicação responsiva: utilize o conceito de Mobile First que foi aprendido em aula.
 
-- [ ] Fica a seu critério onde aplicar animações, transições e transformações.
+- [x] Fica a seu critério onde aplicar animações, transições e transformações.
 
-- [ ] Atende ao modelo proposto no Figma e contém elementos indicativos de ação e estado.
+- [x] Atende ao modelo proposto no Figma e contém elementos indicativos de ação e estado.
 
 ## Opcionais
 
@@ -78,4 +78,34 @@ Desafio final proposto pelo curso da Rocketseat feito por mim, disponível [aqui
 
 # **Como Executar em Ambiente de Desenvolvimento**
 
-TODO
+## Dependências
+
+- [Node 18.12.1](https://git-scm.com/)
+- [yarn 3.3.0](https://yarnpkg.com/getting-started/install)
+- [Git 2.34.1](https://nodejs.org/en/)
+
+## Executando o projeto
+
+Clone o repositório
+
+```bash
+git clone https://github.com/Felipe-Borba/food-explorer-backend.git
+```
+
+Entre dentro do projeto clonado
+
+```bash
+cd rocket-movies-back-end
+```
+
+Instale as dependências do projeto
+
+```bash
+yarn
+```
+
+Rode o projeto backend
+
+```bash
+yarn dev
+```
