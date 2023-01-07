@@ -14,9 +14,13 @@ async function listByDishId(id) {
 async function updateByDishId(params) {
   const { dishId, ingredients } = params;
 
-  for (const name of ingredients) {
-    await knex("dishes").update({ name }).where({ dish_id: dishId });
-  }
+  await knex("ingredients").delete().where({ dish_id: dishId });
+
+  const insertIngredients = ingredients.map((name) => ({
+    dish_id: dishId,
+    name,
+  }));
+  await knex("ingredients").insert(insertIngredients);
 }
 
 module.exports = {

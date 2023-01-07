@@ -25,6 +25,39 @@ async function create(params) {
   return { created: true, id: dish_id[0] };
 }
 
+async function update(params) {
+  const {
+    id,
+    nome: name,
+    descricao: description,
+    preco: price,
+    ingredientes: ingredients,
+    tipo: type,
+  } = params;
+
+  const dish = await knex("dishes").where({ id }).first();
+
+  if (name) {
+    dish.name = name;
+  }
+  if (description) {
+    dish.description = description;
+  }
+  if (price) {
+    dish.price = price;
+  }
+  if (type) {
+    dish.type = type;
+  }
+  if (ingredients) {
+    await ingredientService.updateByDishId({ ingredients, dishId: id });
+  }
+
+  await knex("dishes").update(dish).where({ id });
+
+  return dish;
+}
+
 async function updateDishImage(params) {
   const { id, image } = params;
 
@@ -74,9 +107,15 @@ async function list(params) {
   };
 }
 
+async function deleteById({ id }) {
+  await knex("dishes").where({ id }).delete();
+}
+
 module.exports = {
   updateDishImage,
+  deleteById,
   loadById,
+  update,
   create,
   list,
 };

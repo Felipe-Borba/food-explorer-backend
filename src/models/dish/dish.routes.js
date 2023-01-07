@@ -33,12 +33,38 @@ dishRoutes.post(
 );
 
 dishRoutes.patch(
+  "/:id",
+  check("nome").notEmpty().withMessage("é obrigatório").trim(),
+  check("descricao").notEmpty().withMessage("é obrigatório").trim(),
+  check("preco")
+    .notEmpty()
+    .withMessage("é obrigatório")
+    .isNumeric()
+    .withMessage("deve ser um numero"),
+  check("ingredientes")
+    .notEmpty()
+    .withMessage("é obrigatório")
+    .isArray()
+    .withMessage("deve ser um array"),
+  check("tipo")
+    .notEmpty()
+    .withMessage("é obrigatório")
+    .trim()
+    .isIn(["bebida", "sobremesa", "principal"])
+    .withMessage("deve ser: bebida, sobremesa ou principal"),
+  validate,
+  dishController.update
+);
+
+dishRoutes.patch(
   "/:id/imagem",
   upload.single("imagem"),
   dishController.updateDishImage
 );
 
 dishRoutes.get("/:id", dishController.loadById);
+
+dishRoutes.delete("/:id", dishController.deleteById);
 
 dishRoutes.get("/", dishController.list);
 

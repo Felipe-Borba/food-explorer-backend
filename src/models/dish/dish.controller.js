@@ -11,6 +11,17 @@ async function create(request, response, next) {
   }
 }
 
+async function update(request, response, next) {
+  try {
+    const { id } = request.params;
+    const { body } = request;
+
+    return response.status(201).send(await dishService.update({ id, ...body }));
+  } catch (error) {
+    next(error);
+  }
+}
+
 async function updateDishImage(request, response, next) {
   try {
     const id = request.params.id;
@@ -48,7 +59,17 @@ async function list(request, response, next) {
   try {
     const { type } = request.query;
 
-    return response.status(201).send(await dishService.list({type}));
+    return response.status(201).send(await dishService.list({ type }));
+  } catch (error) {
+    next(error);
+  }
+}
+
+async function deleteById(request, response, next) {
+  try {
+    const { id } = request.params;
+
+    return response.status(201).send(await dishService.deleteById({ id }));
   } catch (error) {
     next(error);
   }
@@ -58,5 +79,7 @@ module.exports = {
   updateDishImage,
   create,
   loadById,
+  deleteById,
+  update,
   list,
 };
