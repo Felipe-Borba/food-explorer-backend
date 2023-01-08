@@ -7,7 +7,7 @@ const cookieParser = require("cookie-parser");
 
 const usersRouter = require("./models/users/users.routes");
 const dishRouter = require("./models/dish/dish.routes");
-const ensureAuthenticated = require("./middleware/auth"); // TODO add authentication in all, check role is a business rule
+const ensureAuthenticated = require("./middleware/auth");
 
 app.use(express.json());
 app.use(cors());

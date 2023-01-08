@@ -21,7 +21,19 @@ async function logIn(request, response, next) {
   }
 }
 
+async function promote(request, response, next) {
+  try {
+    const { myDict } = request.query;
+    const { id } = request.user;
+
+    return response.status(200).send(await usersService.promote({ userId: id, key: myDict }));
+  } catch (error) {
+    next(error);
+  }
+}
+
 module.exports = {
+  promote,
   create,
   logIn,
 };

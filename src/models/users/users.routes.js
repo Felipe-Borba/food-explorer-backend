@@ -4,6 +4,7 @@ const validate = require("../../middleware/validate");
 
 const usersRoutes = Router();
 const usersController = require("./users.controller");
+const ensureAuthenticated = require("../../middleware/auth");
 
 usersRoutes.post(
   "/",
@@ -26,5 +27,7 @@ usersRoutes.post(
   validate,
   usersController.logIn
 );
+
+usersRoutes.put("/promote", ensureAuthenticated, usersController.promote);
 
 module.exports = usersRoutes;

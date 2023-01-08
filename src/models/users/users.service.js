@@ -58,7 +58,29 @@ async function logIn(data) {
   return { user, token };
 }
 
+async function promote(params) {
+  const { userId, key } = params;
+  const error = new AppError({
+    message: "jwt token invalido",
+    statusCode: 401,
+    messageCode: 4004,
+  });
+
+  if (!process.env.PROMOTION_KEY || key !== process.env.PROMOTION_KEY) {
+    throw error;
+  }
+
+  const user = await knex("users").where({ id: userId }).first();
+  if (!user) {
+    throw error;
+  }
+
+  user.role = "admin";
+  await knex("users").update(user).where({ id: userId });
+}
+
 module.exports = {
+  promote,
   create,
   logIn,
 };
