@@ -94,11 +94,11 @@ async function loadById(params) {
 }
 
 async function list(params) {
-  const { type } = params;
+  const { filter } = params;
   let query = knex("dishes");
 
-  if (type) {
-    query = query.where({ type });
+  if (filter) {
+    query = query.where("dishes.name", "like", `%${filter}%`);
   }
 
   const dishes = await query;
