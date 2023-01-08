@@ -6,6 +6,8 @@
   "author": "Felipe Boba <felipe.borba0109@gmail.com>",
   "license": "MIT",
   "scripts": {
+    "pm2": "pm2 start src",
+    "start": "pm2-runtime start ecosystem.config.js --env production",
     "dev": "nodemon src/index.js",
     "migrate": "knex migrate:latest --knexfile src/database/knex/knexfile.js",
     "make:migration": "knex migrate:make --knexfile src/database/knex/knexfile.js --migrations-directory"
@@ -21,6 +23,7 @@
     "jsonwebtoken": "^8.5.1",
     "knex": "^2.3.0",
     "multer": "^1.4.5-lts.1",
+    "pm2": "^5.2.2",
     "sqlite3": "^5.1.2"
   },
   "devDependencies": {

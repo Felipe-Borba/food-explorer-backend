@@ -1,6 +1,6 @@
 # **Food Explorer Backend**
 
-Desafio final proposto pelo curso da Rocketseat feito por mim, disponível [aqui](https://app.rocketseat.com.br/explorer/final-challenge).
+Desafio final proposto pelo curso da Rocketseat feito por mim, disponível [aqui]().
 
 [Repositório do frontend](https://github.com/Felipe-Borba/food-explorer-backend)
 
@@ -40,13 +40,13 @@ Desafio final proposto pelo curso da Rocketseat feito por mim, disponível [aqui
 
 - [x] O admin irá fazer upload de imagens para cadastrar os pratos.
 
-- [ ] Para finalizar, faça o deploy da sua aplicação.
+- [x] Para finalizar, faça o deploy da sua aplicação.
 
 - [x] Dê nomes significativos para as suas funções e variáveis: trabalhe um pouco com os conceitos do Clean Code.
 
 - [x] Os dados do admin, do restaurante e dos usuários serão armazenados em um banco de dados.
 
-- [ ] Possibilidade de fazer uma busca pelo nome do prato
+- [x] Possibilidade de fazer uma busca pelo nome do prato
 
 - [x] É essencial que a sua interface consuma a sua própria API.
 
@@ -102,6 +102,14 @@ Instale as dependências do projeto
 
 ```bash
 yarn
+```
+
+Configure as variáveis de ambiente
+
+> Crie um arquivo chamado .env com base no arquivo .env.example
+
+```bash
+cp .env.example .env
 ```
 
 Rode o projeto backend
