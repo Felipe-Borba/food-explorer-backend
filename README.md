@@ -1,6 +1,6 @@
 # **Food Explorer Backend**
 
-Desafio final proposto pelo curso da Rocketseat feito por mim, disponível [aqui]().
+Desafio final proposto pelo curso da Rocketseat feito por mim, disponível [aqui](https://mellow-biscuit-6825ae.netlify.app).
 
 [Repositório do frontend](https://github.com/Felipe-Borba/food-explorer-backend)
 
